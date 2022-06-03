@@ -1,11 +1,9 @@
 #include <stdio.h>
-
 /**
  * main - print lowercase a-z
  *
  * Return: Always 0 (Success)
  */
-
 int main(void)
 {
 	char alpha = 'a';
@@ -15,6 +13,6 @@ int main(void)
 		putchar(alpha);
 		alpha++;
 	}
-	putchar('\n');	
+	putchar('\n');
 	return (0);
 }
