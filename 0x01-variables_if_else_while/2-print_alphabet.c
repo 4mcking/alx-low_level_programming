@@ -1,4 +1,4 @@
-#include
+#include <stdio.h>
 
 /**
  * main - print lowercase a-z
@@ -8,10 +8,13 @@
 
 int main(void)
 {
-	char a;
+	char alpha = 'a';
 
-	for (a = 'a'; a <= 'z'; a++)
-		putchar(a);
-	putchar('\n');
+	while (alpha <= 'z')
+	{
+		putchar(alpha);
+		alpha++;
+	}
+	putchar('\n');	
 	return (0);
 }
