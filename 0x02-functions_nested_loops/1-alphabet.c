@@ -1,17 +1,18 @@
-#include <stdio.h>
 #include "main.h"
-/*
-** print_alphabet - prints lowercase alphabet
-**
-** Return: Always 0 (Success)
-*/
+/**
+ * print_alphabet - print lowercase alphabet
+ *
+ * Return: 0 Always (SUCCESS)
+ *
+ */
 void print_alphabet(void)
 {
-	char i;
+	int i;
 
-	for (i = 'a'; i <= 'z'; i++)
+	for (i = 97; i <= 122; i++)
 	{
 		_putchar(i);
 	}
+/* using ASCII value in the cide above */
 	_putchar('\n');
 }
