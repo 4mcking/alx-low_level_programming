@@ -3,15 +3,15 @@
 #include <string.h>
 /**
  * _strlen - returns the length of a string
- * @s: string
+ * @str: string
  * Return: length
  */
-int _strlen(char *s)
+size_t _strlen(const char *str)
 {
-	int len = 0;
+	size_t length = 0;
 
-	while (*s++)
-		len++;
+	while (*str++)
+		length++;
 
-	return (len);
+	return (length);
 }
