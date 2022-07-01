@@ -2,82 +2,146 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * _puts - prints a string, followed by a new line,
- * @str: pointer to the string to print
+ * _print - moves a string one place to the left and prints the string
+ * @str: string to move
+ * @l: size of string
+ *
  * Return: void
-*/
-void _puts(char *str)
+ */
+void _print(char *str, int l)
 {
-	int i = 0;
-	while (str[i])
+	int i, j;
+
+	i = j = 0;
+	while (i < l)
 	{
-		_putchar(str[i]);
+		if (str[i] != '0')
+			j = 1;
+		if (j || i == l - 1)
+			_putchar(str[i]);
 		i++;
 	}
 
+	_putchar('\n');
+	free(str);
 }
 
 /**
- * _atoi - convert a string to an integer.
- * @s: char type string
- * Return: integer converted
+ * mul - multiplies a char with a string and places the answer into dest
+ * @n: char to multiply
+ * @num: string to multiply
+ * @num_index: last non NULL index of num
+ * @dest: destination of multiplication
+ * @dest_index: highest index to start addition
+ *
+ * Return: pointer to dest, or NULL on failure
  */
-int _atoi(const char *s)
+char *mul(char n, char *num, int num_index, char *dest, int dest_index)
 {
-	int sign = 1;
-	unsigned long int resp = 0, firstNum, i;
+	int j, k, mul, mulrem, add, addrem;
 
-	for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
+	mulrem = addrem = 0;
+	for (j = num_index, k = dest_index; j >= 0; j--, k--)
 	{
-		if (s[firstNum] == '-')
+		mul = (n - '0') * (num[j] - '0') + mulrem;
+		mulrem = mul / 10;
+		add = (dest[k] - '0') + (mul % 10) + addrem;
+		addrem = add / 10;
+		dest[k] = add % 10 + '0';
+	}
+	for (addrem += mulrem; k >= 0 && addrem; k--)
+	{
+		add = (dest[k] - '0') + addrem;
+		addrem = add / 10;
+		dest[k] = add % 10 + '0';
+	}
+	if (addrem)
+	{
+		return (NULL);
+	}
+	return (dest);
+}
+/**
+ * check_for_digits - checks the arguments to ensure they are digits
+ * @av: pointer to arguments
+ *
+ * Return: 0 if digits, 1 if not
+ */
+int check_for_digits(char **av)
+{
+	int i, j;
+
+	for (i = 1; i < 3; i++)
+	{
+		for (j = 0; av[i][j]; j++)
 		{
-			sign *= -1;
+			if (av[i][j] < '0' || av[i][j] > '9')
+				return (1);
 		}
 	}
-
-	for (i = firstNum; s[i] >= 48 && s[i] <= 57; i++)
-	{
-		resp *= 10;
-		resp += (s[i] - 48);
-	}
-
-	return (sign * resp);
+	return (0);
 }
 
 /**
- * print_int - prints an integer.
- * @n: int
- * Return: 0
+ * init - initializes a string
+ * @str: sting to initialize
+ * @l: length of strinf
+ *
+ * Return: void
  */
-void print_int(unsigned long int n)
+void init(char *str, int l)
 {
-	unsigned long int divisor = 1, i, resp;
+	int i;
 
-	for (i = 0; n / divisor > 9; i++, divisor *= 10);
-	for (; divisor >= 1; n %= divisor, divisor /= 10)
-	{
-		resp = n / divisor;
-		_putchar('0' + resp);
-	}
+	for (i = 0; i < l; i++)
+		str[i] = '0';
+	str[i] = '\0';
 }
 
 /**
- * main - print the result of the multiplication, followed by a new line
- * @argc: int
- * @argv: list
- * Return: 0
+ * main - multiply two numbers
+ * @argc: number of arguments
+ * @argv: argument vector
+ *
+ * Return: zero, or exit status of 98 if failure
  */
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
-	(void)argc;
+	int l1, l2, ln, ti, i;
+	char *a;
+	char *t;
+	char e[] = "Error\n";
 
-	if (argc != 3)
+	if (argc != 3 || check_for_digits(argv))
 	{
-		_puts("Error ");
+		for (ti = 0; e[ti]; ti++)
+			_putchar(e[ti]);
 		exit(98);
 	}
-	print_int(_atoi(argv[1]) * _atoi(argv[2]));
-	_putchar('\n');
-
+	for (l1 = 0; argv[1][l1]; l1++)
+		;
+	for (l2 = 0; argv[2][l2]; l2++)
+		;
+	ln = l1 + l2 + 1;
+	a = malloc(ln * sizeof(char));
+	if (a == NULL)
+	{
+		for (ti = 0; e[ti]; ti++)
+			_putchar(e[ti]);
+		exit(98);
+	}
+	init(a, ln - 1);
+	for (ti = l2 - 1, i = 0; ti >= 0; ti--, i++)
+	{
+		t = mul(argv[2][ti], argv[1], l1 - 1, a, (ln - 2) - i);
+		if (t == NULL)
+		{
+			for (ti = 0; e[ti]; ti++)
+				_putchar(e[ti]);
+			free(a);
+			exit(98);
+		}
+	}
+	_print(a, ln - 1);
 	return (0);
 }
