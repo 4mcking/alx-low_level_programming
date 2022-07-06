@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * p_add - Returns the sum of two numbers.
+ * op_add - Returns the sum of two numbers.
  * @a: The first number.
  * @b: The second number.
  *
