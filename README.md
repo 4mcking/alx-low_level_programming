@@ -22,12 +22,12 @@ working in the C language. The specific list of projects contained follows:
 * [0x0E. C - Structures, typedef](./0x0E-structures_typedef)
 * [0x0F. C - Function pointers](./0x0F-function_pointers)
 * [0x10. C - Variadic functions](./0x10-variadic_functions)
-* [0x11. C - printf](https://github.com/4mcking/printf/tree/master)
+* [0x11. C - printf](https://github.com/4mcking/printf)
 * [0x12. C - Singly linked lists](./0x12-singly_linked_lists)
 * [0x13. C - More singly linked lists](./0x13-more_singly_linked_lists)
 * [0x14. C - Bit manipulation](./0x14-bit_manipulation)
 * [0x15. C - File I/O](./0x15-file_io)
-* [0x16. C - Simple Shell](https://github.com/4mcking/simple_shell/tree/master)
+* [0x16. C - Simple Shell](https://github.com/4mcking/simple_shell)
 
 ## Author :King Ceo:
 
