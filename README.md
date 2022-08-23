@@ -29,9 +29,9 @@ working in the C language. The specific list of projects contained follows:
 * [0x15. C - File I/O](./0x15-file_io)
 * [0x16. C - Simple Shell](https://github.com/4mcking/simple_shell)
 
-## Author :King Ceo:
+## Author :King CEO:
 
-* __Kingson Emma-Ochu__ <[4mcking](https://github.com/4mcking)>
+* __King CEO__ <[4mcking](https://github.com/4mcking)>
 
 ## Acknowledgements ©️
 
